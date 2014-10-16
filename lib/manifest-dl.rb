@@ -28,31 +28,36 @@ module ManifestDL
   # --
 
   # download files in manifest
-  def self.run!(config_file = DEFAULT_CONFIG)
-    YAML.load(DEFAULT_CONFIG).each do |item|
-      _check! x; _dl! x if _dl? x
-    end
+  def self.run!(quiet = false, config_file = DEFAULT_CONFIG)
+    YAML.load(File.read(DEFAULT_CONFIG)).map do |item|
+      _check! item; _dl?(item) ? _dl!(item, quiet) : nil;
+    end .compact
   end
 
   # --
 
   # check item
   def self._check!(item)
-    raise InvalidItemError, "unexpected/missing keys for item #{item.inspect}" \
-      unless item.keys.sort == %w{ path sha512sum url }
-    raise InvalidItemError, "non-string keys for item #{item.inspect}" \
-      unless item.keys.all? { |x| String === x }
+    raise InvalidItemError,
+      "unexpected/missing keys for item #{item.inspect}" \
+        unless item.keys.sort == %w{ path sha512sum url }
+    raise InvalidItemError,
+      "non-string keys for item #{item.inspect}" \
+        unless item.keys.all? { |x| String === x }
   end
 
   # download, verify, mv file
-  def self._dl!(item)
+  def self._dl!(item, quiet = false)
+    $stderr.puts "==> #{item['path']}" unless quiet
     Dir.mktmpdir do |dir|
       tempfile = Pathname.new(dir).join('dl').to_s
-      _curl! item['url'], tempfile
+      _curl! item['url'], tempfile, quiet
       _verify! tempfile, item['sha512sum']
+      FileUtils.mkdir_p File.dirname(item['path'])
       FileUtils.mv tempfile, item['path'], force: true
       _cache! item['path'], item['sha512sum']
     end
+    item['path']
   end
 
   # should file be downloaded?
@@ -65,10 +70,11 @@ module ManifestDL
   # --
 
   # download file w/ curl
-  def self._curl!(url, file)
+  def self._curl!(url, file, quiet = false)
+    args = %w{ curl -L } + (quiet ? %w{ -s } : []) + ['-o', file, '--', url]
     # no shell b/c multiple args!
-    system('curl', '-o', file, '--', url) \
-      or raise SystemError 'curl returned non-zero'
+    system(*args) or raise SystemError 'curl returned non-zero'
+    nil
   end
 
   # verify file
@@ -77,6 +83,7 @@ module ManifestDL
     sum2 = IO.popen(%w{ shasum -a 512 } + [file]) { |f| f.gets.split.first }
     raise SystemError 'shasum returned non-zero' unless $?.success?
     raise VerificationError, file unless sum == sum2
+    nil
   end
 
   # get item's cached sha512sum;
@@ -90,6 +97,7 @@ module ManifestDL
   def self._cache!(path, sum)
     FileUtils.mkdir_p DEFAULT_CACHE
     File.write _cachefile(path), sum
+    nil
   end
 
   # cache file path

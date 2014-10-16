@@ -5,7 +5,7 @@
     Date        : 2014-10-16
 
     Copyright   : Copyright (C) 2014  Felix C. Stegerman
-    Version     : v0.0.1.SNAPSHOT
+    Version     : v0.1.0
 
 []: }}}1
 
@@ -43,7 +43,7 @@ gem 'manifest-dl', require: 'manifest-dl/rails'
 ```yaml
 - path:       public/uploads/t-and-c.pdf
 - url:        https://example.com/path/to/tandc.pdf
-- sha512sum:  9c573b5ed223f076b4f0c9483608c2d341eb81a7f0bbf268d741721757fce9c1f4ad82a9220c542433a81f4c4a85173b1fb085aaec5b653e95589cf5f3f56d28
+- sha512sum:  9c573b5ed223f076b4f0c9483608c2d341eb8...
 ```
 
 `.gitignore`
