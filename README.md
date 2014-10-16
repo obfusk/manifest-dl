@@ -9,9 +9,7 @@
 
 []: }}}1
 
-<!--
 [![Gem Version](https://badge.fury.io/rb/manifest-dl.png)](https://rubygems.org/gems/manifest-dl)
--->
 
 ## Description
 []: {{{1
@@ -42,8 +40,8 @@ gem 'manifest-dl', require: 'manifest-dl/rails'
 `config/manifest-dl.yaml`:
 ```yaml
 - path:       public/uploads/t-and-c.pdf
-- url:        https://example.com/path/to/tandc.pdf
-- sha512sum:  9c573b5ed223f076b4f0c9483608c2d341eb8...
+  url:        https://example.com/path/to/tandc.pdf
+  sha512sum:  9c573b5ed223f076b4f0c9483608c2d341eb8...
 ```
 
 `.gitignore`
