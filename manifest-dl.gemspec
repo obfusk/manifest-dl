@@ -3,10 +3,10 @@ require File.expand_path('../lib/manifest-dl/version', __FILE__)
 Gem::Specification.new do |s|
   s.name        = 'manifest-dl'
   s.homepage    = 'https://github.com/obfusk/manifest-dl'
-  s.summary     = 'downloads extra files for your app'
+  s.summary     = 'download extra files for your app'
 
   s.description = <<-END.gsub(/^ {4}/, '')
-    downloads extra files for your app
+    download extra files for your app
 
     ...
   END

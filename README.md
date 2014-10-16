@@ -16,7 +16,7 @@
 ## Description
 []: {{{1
 
-  manifest-dl - downloads extra files for your app
+  manifest-dl - download extra files for your app
 
   Sometimes you have a (web) app that needs some extra files (e.g.
   terms and conditions) that you don't want to have to upload
