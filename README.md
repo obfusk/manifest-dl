@@ -2,7 +2,7 @@
 
     File        : README.md
     Maintainer  : Felix C. Stegerman <flx@obfusk.net>
-    Date        : 2014-10-16
+    Date        : 2014-10-17
 
     Copyright   : Copyright (C) 2014  Felix C. Stegerman
     Version     : v0.1.0
@@ -34,7 +34,7 @@
 
 ### Rails
 
-```
+```ruby
 # Gemfile
 gem 'manifest-dl', require: 'manifest-dl/rails'
 ```
