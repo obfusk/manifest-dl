@@ -2,7 +2,7 @@
 #
 # File        : manifest-dl/rake.rb
 # Maintainer  : Felix C. Stegerman <flx@obfusk.net>
-# Date        : 2014-10-16
+# Date        : 2014-10-20
 #
 # Copyright   : Copyright (C) 2014  Felix C. Stegerman
 # Licence     : LGPLv3+
@@ -14,7 +14,7 @@ require 'rake/dsl_definition'
 require 'manifest-dl'
 
 # namespace
-module LocalConfig
+module ManifestDL
 
   # rake tasks
   module Rake

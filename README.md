@@ -5,7 +5,7 @@
     Date        : 2014-10-20
 
     Copyright   : Copyright (C) 2014  Felix C. Stegerman
-    Version     : v0.1.1
+    Version     : v0.1.2
 
 []: }}}1
 
@@ -65,6 +65,13 @@ rake manifest:dl    # run!
 ```ruby
 require 'manifest-rb'
 ManifestRB.run!
+```
+
+### Rake
+
+```ruby
+require 'manifest-dl/rake'
+ManifestDL::Rake.define_tasks
 ```
 
 []: }}}1

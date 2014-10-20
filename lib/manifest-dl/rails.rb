@@ -2,7 +2,7 @@
 #
 # File        : manifest-dl/rails.rb
 # Maintainer  : Felix C. Stegerman <flx@obfusk.net>
-# Date        : 2014-10-16
+# Date        : 2014-10-20
 #
 # Copyright   : Copyright (C) 2014  Felix C. Stegerman
 # Licence     : LGPLv3+
@@ -11,10 +11,10 @@
 
 require 'rails'
 
-require 'manifest-dl'
+require 'manifest-dl/rake'
 
 # namespace
-module LocalConfig
+module ManifestDL
 
   # railtie that adds the rake tasks
   class Railtie < Rails::Railtie

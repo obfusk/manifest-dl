@@ -52,7 +52,10 @@ module ManifestDL
 
   # download, verify, mv file
   def self._dl!(item, quiet, cache_dir)
-    $stderr.puts "==> #{item['path']}" unless quiet
+    unless quiet
+      $stderr.puts "==> #{item['path']}"
+      $stderr.puts "  ( #{item['url']} )"
+    end
     Dir.mktmpdir do |dir|
       tempfile = Pathname.new(dir).join('dl').to_s
       _curl! item['url'], tempfile, quiet
